@@ -1,0 +1,15 @@
+{
+  "name": "SURFER",
+  "short_name": "SURFER",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#0A0A0A",
+  "background_color": "#F5F4F0",
+  "display": "standalone",
+  "start_url": "/"
+}
