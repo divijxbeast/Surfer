@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useRef } from "react";
 import Lenis from "lenis";
-import { ScrollTrigger } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 interface SmoothScrollContextType {
   lenis: Lenis | null;
@@ -20,16 +20,12 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo-out smooth curve
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -39,32 +35,20 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
 
     lenisRef.current = lenis;
 
-    // Connect Lenis to GSAP ScrollTrigger
+    // ✅ Correct integration: drive Lenis through GSAP's ticker
+    // so ScrollTrigger always reads scroll position AFTER Lenis updates it.
     lenis.on("scroll", ScrollTrigger.update);
 
-    const updateLenis = (time: number) => {
+    gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
-    };
+    });
 
-    // Use GSAP ticker to drive Lenis updates
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tickerCallback = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+    gsap.ticker.lagSmoothing(0);
 
-    // Direct RAF loop
-    let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
-
-    // Intercept in-page hash links for silky Lenis scrolling
+    // Intercept hash anchor clicks for smooth Lenis scroll
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
-
       const href = target.getAttribute("href");
       if (href && href.startsWith("#") && href.length > 1) {
         e.preventDefault();
@@ -78,8 +62,8 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     document.addEventListener("click", handleAnchorClick);
 
     return () => {
-      cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
       lenis.destroy();
       lenisRef.current = null;
     };

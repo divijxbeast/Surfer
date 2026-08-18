@@ -11,7 +11,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 
 export default function Home() {
   return (
-    <main id="main-content" className="relative w-full overflow-hidden bg-[#F5F4F0]">
+    <main id="main-content" className="relative w-full bg-[#F7F5F0] text-[#0A0A0A]">
       <Hero />
       <BrandIntro />
       <TheProblem />
