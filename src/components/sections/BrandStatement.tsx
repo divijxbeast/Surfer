@@ -22,8 +22,8 @@ export function BrandStatement() {
       ref={containerRef}
       className="relative min-h-screen w-full flex flex-col justify-between py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#0A0A0A] text-[#F7F5F0] dark-section overflow-hidden scroll-mt-10"
     >
-      {/* Background Subdued Texture & Subtle Grain */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
+      {/* Background Subdued Tailoring Texture & Subtle Grain */}
+      <div className="absolute inset-0 pointer-events-none opacity-35">
         <PlaceholderImage
           filename="brand-statement-bg.jpg"
           dimensions="1920×1080"
@@ -34,7 +34,7 @@ export function BrandStatement() {
       </div>
 
       {/* Tonal Radial Vignette */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0A0A0A]/80 to-[#0A0A0A]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0A0A0A]/85 to-[#0A0A0A]" />
 
       {/* Top Header Marker */}
       <div className="relative z-10 max-w-[1440px] w-full mx-auto flex items-center justify-between pb-10 border-b border-white/10">
@@ -54,17 +54,21 @@ export function BrandStatement() {
           className="flex flex-col items-center"
         >
           <span className="text-xs sm:text-sm font-sans font-medium tracking-[0.32em] text-[#9E7B5C] uppercase mb-10">
-            POSTURE · PROPORTION · FREEDOM
+            SELECT · MEASURE · TAILOR
           </span>
 
           <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-normal leading-[0.92] tracking-[-0.02em] text-[#F7F5F0] max-w-6xl">
-            Clothes should move with you.
+            Wear what feels like you.
           </h2>
 
           <div className="h-0.5 w-20 bg-[#9E7B5C] my-12" />
 
-          <p className="text-base sm:text-lg font-sans text-neutral-300 max-w-xl leading-relaxed tracking-wide font-light">
-            Engineered around posture, stride, and daily life. SURFER trousers are created so you forget you are wearing them, while the world notices the difference.
+          <p className="text-base sm:text-lg md:text-xl font-sans text-neutral-200 max-w-2xl leading-relaxed tracking-wide font-light">
+            No two people are built the same. Your pants shouldn&apos;t be either.
+            <br className="hidden sm:inline" />
+            <span className="text-neutral-300 mt-3 block">
+              SURFER brings custom tailoring into everyday fashion. Choose your style, define your fit, and get pants made specifically to your measurements.
+            </span>
           </p>
 
           <span className="mt-14 font-serif text-4xl sm:text-6xl tracking-[0.25em] text-[#F7F5F0] uppercase pl-[0.25em] font-normal">

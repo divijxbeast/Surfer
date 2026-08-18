@@ -36,7 +36,7 @@ const IMAGE_URL_MAP: Record<string, string> = {
   "craftsmanship-02.jpg": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800&auto=format&fit=crop",
   "craftsmanship-03.jpg": "https://images.unsplash.com/photo-1520975954732-35dd22299614?q=80&w=800&auto=format&fit=crop",
   "craftsmanship-04.jpg": "https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?q=80&w=800&auto=format&fit=crop",
-  "brand-statement-bg.jpg": "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1800&auto=format&fit=crop",
+  "brand-statement-bg.jpg": "https://images.unsplash.com/photo-1598808503746-f34c53b9323e?q=80&w=2000&auto=format&fit=crop",
 };
 
 export function PlaceholderImage({
