@@ -62,7 +62,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* 2. Monumental Stage: Giant 'SURFER' in Anton Font + Transparent Cutout Walking Model */}
+      {/* 2. Monumental Stage: Giant 'SURFER' in Anton Font + User-Provided Cutout Walking Model */}
       <div className="relative w-full max-w-[1600px] mx-auto flex items-center justify-center my-auto py-4 sm:py-6">
         {/* Giant Anton Font Wordmark Behind Model */}
         <motion.h1
@@ -74,26 +74,26 @@ export function Hero() {
           SURFER
         </motion.h1>
 
-        {/* Transparent Walking Model Cutout layered over the text */}
+        {/* Transparent Walking Model Cutout Layered in Front */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
-          <div className="relative w-[320px] sm:w-[440px] md:w-[560px] lg:w-[660px] h-[72vh] sm:h-[80vh] lg:h-[86vh] max-h-[720px] flex items-center justify-center">
+          <div className="relative w-[340px] sm:w-[480px] md:w-[600px] lg:w-[700px] h-[72vh] sm:h-[80vh] lg:h-[88vh] max-h-[740px] flex items-center justify-center">
             {/* Ground Contact Soft Drop Shadow */}
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0)_70%)] blur-sm pointer-events-none" />
+            <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-[70%] h-7 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.38)_0%,rgba(0,0,0,0)_70%)] blur-sm pointer-events-none" />
 
             {/* Model Cutout PNG */}
             <div className="relative w-full h-full flex items-center justify-center">
               <Image
                 src="/hero-model.png"
-                alt="SURFER Walking Model in Trench Coat and Bespoke Trousers"
+                alt="SURFER Walking Model in Trench Coat, Cap, and Bespoke Relaxed Trousers"
                 fill
                 priority
-                sizes="(max-width: 768px) 85vw, (max-width: 1200px) 55vw, 660px"
-                className="object-contain object-bottom drop-shadow-[0_18px_26px_rgba(0,0,0,0.25)]"
+                sizes="(max-width: 768px) 90vw, (max-width: 1200px) 60vw, 700px"
+                className="object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.22)]"
               />
             </div>
           </div>
