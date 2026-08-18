@@ -16,7 +16,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[88vh] lg:min-h-[95vh] bg-[#ECEAE5] flex flex-col justify-between pt-8 sm:pt-12 pb-10 sm:pb-14 px-6 sm:px-12 md:px-16 overflow-hidden select-none">
+    <section className="relative w-full min-h-[88vh] lg:min-h-[96vh] bg-[#ECEAE5] flex flex-col justify-between pt-8 sm:pt-12 pb-10 sm:pb-14 px-6 sm:px-12 md:px-16 overflow-hidden select-none">
       {/* 1. Top Section Metadata Labels */}
       <div className="max-w-[1520px] w-full mx-auto flex items-start justify-between z-20 relative pointer-events-auto">
         {/* Top-Left Tagline matching reference */}
@@ -69,7 +69,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-anton text-[25vw] leading-[0.76] tracking-[0.02em] text-[#0A0A0A] uppercase select-none text-center w-full z-0 block pointer-events-none"
+          className="font-anton text-[26vw] leading-[0.74] tracking-[0.02em] text-[#0A0A0A] uppercase select-none text-center w-full z-0 block pointer-events-none"
         >
           SURFER
         </motion.h1>
@@ -81,9 +81,9 @@ export function Hero() {
           transition={{ duration: 1.0, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
         >
-          <div className="relative w-[300px] sm:w-[420px] md:w-[520px] lg:w-[600px] h-[68vh] sm:h-[76vh] lg:h-[82vh] max-h-[680px] flex items-center justify-center">
+          <div className="relative w-[320px] sm:w-[440px] md:w-[560px] lg:w-[660px] h-[72vh] sm:h-[80vh] lg:h-[86vh] max-h-[720px] flex items-center justify-center">
             {/* Ground Contact Soft Drop Shadow */}
-            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0)_70%)] blur-sm pointer-events-none" />
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0)_70%)] blur-sm pointer-events-none" />
 
             {/* Model Cutout PNG */}
             <div className="relative w-full h-full flex items-center justify-center">
@@ -92,8 +92,8 @@ export function Hero() {
                 alt="SURFER Walking Model in Trench Coat and Bespoke Trousers"
                 fill
                 priority
-                sizes="(max-width: 768px) 85vw, (max-width: 1200px) 55vw, 600px"
-                className="object-contain object-bottom drop-shadow-[0_16px_24px_rgba(0,0,0,0.25)]"
+                sizes="(max-width: 768px) 85vw, (max-width: 1200px) 55vw, 660px"
+                className="object-contain object-bottom drop-shadow-[0_18px_26px_rgba(0,0,0,0.25)]"
               />
             </div>
           </div>
