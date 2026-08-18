@@ -7,6 +7,7 @@ import { LoadingScreen } from "@/components/common/LoadingScreen";
 import { SkipToContent } from "@/components/common/SkipToContent";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -105,6 +106,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScrollProvider>
+        <Analytics />
       </body>
     </html>
   );
