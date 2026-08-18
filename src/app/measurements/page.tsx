@@ -1,16 +1,8 @@
-import { PlaceholderPage } from "@/components/common/PlaceholderPage";
+"use client";
 
-export const metadata = {
-  title: "Measurement Guide — SURFER",
-  description: "Learn how to record your key measurements with millimeter accuracy.",
-};
+import React from "react";
+import AccountPage from "../account/page";
 
 export default function MeasurementsPage() {
-  return (
-    <PlaceholderPage
-      title="Measurement Studio"
-      subtitle="Guided video measurement assistance and AI-assisted sizing calibration opening soon."
-      category="ATELIER SIZING"
-    />
-  );
+  return <AccountPage />;
 }

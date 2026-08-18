@@ -1,16 +1,8 @@
-import { PlaceholderPage } from "@/components/common/PlaceholderPage";
+"use client";
 
-export const metadata = {
-  title: "Orders — SURFER",
-  description: "Track your bespoke tailoring progress.",
-};
+import React from "react";
+import AccountPage from "../account/page";
 
 export default function OrdersPage() {
-  return (
-    <PlaceholderPage
-      title="Bespoke Tracking"
-      subtitle="Follow your garment through pattern drafting, laser cutting, hand-basting, and final pressing."
-      category="ATELIER STATUS"
-    />
-  );
+  return <AccountPage />;
 }
