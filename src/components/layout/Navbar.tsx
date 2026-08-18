@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, User, Heart, ShoppingBag, Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/components/common/SmoothScrollProvider";
-import { AuthModal } from "@/components/account/AuthModal";
 
 const NAV_CATEGORIES = [
   { label: "MEN", href: "#collection" },
@@ -18,7 +17,6 @@ const NAV_CATEGORIES = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [bagCount] = useState(0);
   const { scrollTo } = useSmoothScroll();
 
@@ -57,16 +55,13 @@ export function Navbar() {
             TRACK ORDER
           </Link>
           <span>|</span>
-          <button
-            onClick={() => setIsAuthModalOpen(true)}
-            className="hover:text-white transition-colors uppercase cursor-pointer"
-          >
+          <Link href="/login" className="hover:text-white transition-colors uppercase">
             CLIENT PORTAL
-          </button>
+          </Link>
         </div>
       </div>
 
-      {/* Main Refined Header */}
+      {/* Main Header */}
       <header
         className={cn(
           "sticky top-0 left-0 right-0 z-40 transition-all duration-300",
@@ -107,10 +102,6 @@ export function Navbar() {
             href="/"
             className="absolute left-1/2 -translate-x-1/2 focus-visible:outline-none group flex items-center justify-center"
             aria-label="SURFER - Return to top"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
           >
             <span className="font-anton text-2xl sm:text-3xl md:text-[34px] tracking-[0.05em] text-[#0A0A0A] uppercase transition-opacity group-hover:opacity-80 leading-none">
               SURFER
@@ -128,16 +119,15 @@ export function Navbar() {
               <span className="hidden sm:inline-block uppercase">SEARCH</span>
             </button>
 
-            {/* Clickable Login Button with Instant Modal Trigger */}
-            <button
-              type="button"
-              onClick={() => setIsAuthModalOpen(true)}
+            {/* Direct Link to Login Page */}
+            <Link
+              href="/login"
               className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer px-1 py-1"
-              title="Client Account"
+              title="Client Login"
             >
               <User size={15} strokeWidth={2} />
               <span className="inline-block uppercase">LOGIN</span>
-            </button>
+            </Link>
 
             <Link
               href="/account"
@@ -163,12 +153,6 @@ export function Navbar() {
           </div>
         </div>
       </header>
-
-      {/* Instant Auth Modal */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -205,23 +189,20 @@ export function Navbar() {
                 </motion.div>
               ))}
 
-              {/* Dedicated Login in Mobile Drawer */}
+              {/* Dedicated Login Link in Mobile Drawer */}
               <motion.div
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.25, duration: 0.35 }}
               >
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    setIsAuthModalOpen(true);
-                  }}
-                  className="flex items-center justify-between w-full text-2xl font-anton text-[#0A0A0A] tracking-wider py-2.5 border-b border-[#D8D4CC] text-left cursor-pointer"
+                <Link
+                  href="/login"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center justify-between w-full text-2xl font-anton text-[#0A0A0A] tracking-wider py-2.5 border-b border-[#D8D4CC] text-left"
                 >
                   <span>CLIENT LOGIN / VAULT</span>
                   <ArrowRight size={18} className="text-[#9E7B5C]" />
-                </button>
+                </Link>
               </motion.div>
             </div>
 
