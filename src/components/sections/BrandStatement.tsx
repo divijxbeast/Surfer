@@ -18,8 +18,9 @@ export function BrandStatement() {
 
   return (
     <section
+      id="about-us"
       ref={containerRef}
-      className="relative min-h-screen w-full flex flex-col justify-between py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#0A0A0A] text-[#F7F5F0] dark-section overflow-hidden"
+      className="relative min-h-screen w-full flex flex-col justify-between py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#0A0A0A] text-[#F7F5F0] dark-section overflow-hidden scroll-mt-10"
     >
       {/* Background Subdued Texture & Subtle Grain */}
       <div className="absolute inset-0 pointer-events-none opacity-30">

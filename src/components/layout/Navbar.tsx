@@ -9,9 +9,9 @@ import { useSmoothScroll } from "@/components/common/SmoothScrollProvider";
 
 const NAV_CATEGORIES = [
   { label: "MEN", href: "#collection" },
-  { label: "WOMEN", href: "#collection" },
   { label: "SILHOUETTES", href: "#fit" },
-  { label: "ATELIER", href: "#about" },
+  { label: "ATELIER", href: "#atelier" },
+  { label: "ABOUT US", href: "#about-us" },
 ];
 
 export function Navbar() {
@@ -82,7 +82,7 @@ export function Navbar() {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="text-[11px] font-sans font-semibold tracking-[0.2em] text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors py-1 uppercase"
+                className="text-[11px] font-sans font-semibold tracking-[0.2em] text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors py-1 uppercase cursor-pointer"
               >
                 {item.label}
               </a>

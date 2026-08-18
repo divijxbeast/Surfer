@@ -7,8 +7,8 @@ import { PlaceholderImage } from "@/components/common/PlaceholderImage";
 export function BrandIntro() {
   return (
     <section
-      id="about"
-      className="relative w-full py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#FCFAF6] border-t border-[#E2DDD5]"
+      id="atelier"
+      className="relative w-full py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#FCFAF6] border-t border-[#E2DDD5] scroll-mt-10"
     >
       <div className="max-w-[1440px] mx-auto">
         {/* Section Label Header */}
