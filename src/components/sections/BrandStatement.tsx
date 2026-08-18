@@ -20,7 +20,7 @@ export function BrandStatement() {
     <section
       id="about-us"
       ref={containerRef}
-      className="relative min-h-screen w-full flex flex-col justify-between py-32 sm:py-44 md:py-56 px-6 sm:px-10 md:px-16 bg-[#0A0A0A] text-[#F7F5F0] dark-section overflow-hidden scroll-mt-10"
+      className="relative min-h-[75vh] sm:min-h-screen w-full flex flex-col justify-between py-20 sm:py-36 md:py-48 px-4 sm:px-10 md:px-16 bg-[#0A0A0A] text-[#F7F5F0] dark-section overflow-hidden scroll-mt-10"
     >
       {/* Background Subdued Tailoring Texture & Subtle Grain */}
       <div className="absolute inset-0 pointer-events-none opacity-35">
@@ -37,48 +37,48 @@ export function BrandStatement() {
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0A0A0A]/85 to-[#0A0A0A]" />
 
       {/* Top Header Marker */}
-      <div className="relative z-10 max-w-[1440px] w-full mx-auto flex items-center justify-between pb-10 border-b border-white/10">
-        <span className="text-[11px] font-sans font-medium tracking-[0.25em] text-[#C9BFA8] uppercase flex items-center gap-2">
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto flex items-center justify-between pb-6 sm:pb-10 border-b border-white/10">
+        <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.25em] text-[#C9BFA8] uppercase flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-[#9E7B5C]" />
           THE CORE BELIEF
         </span>
-        <span className="text-[11px] font-mono text-[#85837D] uppercase tracking-widest">
+        <span className="text-[10px] sm:text-[11px] font-mono text-[#85837D] uppercase tracking-widest">
           08 / CRESCENDO
         </span>
       </div>
 
       {/* Monumental Central Statement */}
-      <div className="relative z-10 max-w-[1440px] w-full mx-auto my-auto py-20 sm:py-32 flex flex-col items-center text-center">
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto my-auto py-12 sm:py-28 flex flex-col items-center text-center">
         <motion.div
           style={{ opacity, scale, y: textY }}
           className="flex flex-col items-center"
         >
-          <span className="text-xs sm:text-sm font-sans font-medium tracking-[0.32em] text-[#9E7B5C] uppercase mb-10">
+          <span className="text-xs sm:text-sm font-sans font-medium tracking-[0.28em] sm:tracking-[0.32em] text-[#9E7B5C] uppercase mb-6 sm:mb-10">
             SELECT · MEASURE · TAILOR
           </span>
 
-          <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-normal leading-[0.92] tracking-[-0.02em] text-[#F7F5F0] max-w-6xl">
+          <h2 className="font-serif text-3xl sm:text-6xl md:text-8xl lg:text-9xl font-normal leading-[1.0] sm:leading-[0.92] tracking-[-0.02em] text-[#F7F5F0] max-w-6xl">
             Wear what feels like you.
           </h2>
 
-          <div className="h-0.5 w-20 bg-[#9E7B5C] my-12" />
+          <div className="h-0.5 w-14 sm:w-20 bg-[#9E7B5C] my-8 sm:my-12" />
 
-          <p className="text-base sm:text-lg md:text-xl font-sans text-neutral-200 max-w-2xl leading-relaxed tracking-wide font-light">
+          <p className="text-sm sm:text-lg md:text-xl font-sans text-neutral-200 max-w-2xl leading-relaxed tracking-wide font-light px-2 sm:px-0">
             No two people are built the same. Your pants shouldn&apos;t be either.
             <br className="hidden sm:inline" />
-            <span className="text-neutral-300 mt-3 block">
+            <span className="text-neutral-300 mt-2.5 sm:mt-3 block text-xs sm:text-base">
               SURFER brings custom tailoring into everyday fashion. Choose your style, define your fit, and get pants made specifically to your measurements.
             </span>
           </p>
 
-          <span className="mt-14 font-serif text-4xl sm:text-6xl tracking-[0.25em] text-[#F7F5F0] uppercase pl-[0.25em] font-normal">
+          <span className="mt-8 sm:mt-14 font-serif text-3xl sm:text-6xl tracking-[0.25em] text-[#F7F5F0] uppercase pl-[0.25em] font-normal">
             SURFER
           </span>
         </motion.div>
       </div>
 
       {/* Bottom Marker */}
-      <div className="relative z-10 max-w-[1440px] w-full mx-auto flex items-center justify-between pt-10 border-t border-white/10 text-xs font-mono text-[#85837D]">
+      <div className="relative z-10 max-w-[1440px] w-full mx-auto flex items-center justify-between pt-6 sm:pt-10 border-t border-white/10 text-[10px] sm:text-xs font-mono text-[#85837D]">
         <span>ATELIER EST. 2026</span>
         <span className="uppercase tracking-widest text-[#C9BFA8]">AUTONOMOUS BESPOKE HOUSE</span>
       </div>

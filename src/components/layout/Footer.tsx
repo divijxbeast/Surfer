@@ -13,35 +13,35 @@ export function Footer() {
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
-        scrollTo(element as HTMLElement);
+        scrollTo(element as HTMLElement, { offset: -40 });
       }
     }
   };
 
   return (
-    <footer className="bg-[#0A0A0A] text-[#F5F4F0] pt-24 sm:pt-32 pb-12 border-t border-white/10 dark-section overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16">
+    <footer className="bg-[#0A0A0A] text-[#F5F4F0] pt-16 sm:pt-32 pb-8 sm:pb-12 border-t border-white/10 dark-section overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-10 md:px-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 sm:gap-16 pb-20 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 sm:gap-16 pb-12 sm:pb-20 border-b border-white/10">
           {/* Brand Manifesto Column */}
-          <div className="md:col-span-5 flex flex-col justify-between">
+          <div className="sm:col-span-2 md:col-span-5 flex flex-col justify-between">
             <div>
-              <span className="text-[11px] font-sans font-medium tracking-[0.25em] text-[#8A8A86] uppercase block mb-4">
+              <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.25em] text-[#8A8A86] uppercase block mb-3 sm:mb-4">
                 SURFER Tailoring
               </span>
-              <h3 className="font-serif text-3xl sm:text-4xl text-[#F5F4F0] font-normal leading-tight max-w-sm mb-6">
+              <h3 className="font-serif text-2xl sm:text-4xl text-[#F5F4F0] font-normal leading-tight max-w-sm mb-4 sm:mb-6">
                 Pants should adapt to the person — not the person to the pants.
               </h3>
-              <p className="text-sm text-[#8A8A86] leading-relaxed max-w-md font-sans">
+              <p className="text-xs sm:text-sm text-[#8A8A86] leading-relaxed max-w-md font-sans">
                 A modern luxury fashion house offering personalized proportions, handcrafted with architectural precision.
               </p>
             </div>
 
-            <div className="mt-10 pt-6 border-t border-white/10">
-              <span className="text-[11px] font-sans tracking-[0.2em] text-[#8A8A86] uppercase block mb-2">
+            <div className="mt-8 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10">
+              <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.2em] text-[#8A8A86] uppercase block mb-1.5 sm:mb-2">
                 Inquiries & Bespoke Appointments
               </span>
-              <p className="text-sm font-mono text-[#F5F4F0]">
+              <p className="text-xs sm:text-sm font-mono text-[#F5F4F0]">
                 atelier@surfer-tailoring.com
               </p>
             </div>
@@ -49,16 +49,16 @@ export function Footer() {
 
           {/* Navigation Links */}
           <div className="md:col-span-2 md:col-start-7 flex flex-col">
-            <span className="text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-6">
+            <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-4 sm:mb-6">
               Navigation
             </span>
-            <ul className="flex flex-col gap-3.5">
+            <ul className="flex flex-col gap-2.5 sm:gap-3.5">
               {FOOTER_NAV_LINKS.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
                     onClick={(e) => handleAnchorClick(e, item.href)}
-                    className="text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block"
+                    className="text-xs sm:text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block py-1"
                   >
                     {item.label}
                   </a>
@@ -69,15 +69,15 @@ export function Footer() {
 
           {/* Future Exploration Links */}
           <div className="md:col-span-2 flex flex-col">
-            <span className="text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-6">
+            <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-4 sm:mb-6">
               Platform
             </span>
-            <ul className="flex flex-col gap-3.5">
+            <ul className="flex flex-col gap-2.5 sm:gap-3.5">
               {FOOTER_FUTURE_LINKS.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-[#8A8A86] hover:text-[#F5F4F0] transition-colors duration-300 tracking-wider font-sans inline-block"
+                    className="text-xs sm:text-sm text-[#8A8A86] hover:text-[#F5F4F0] transition-colors duration-300 tracking-wider font-sans inline-block py-1"
                   >
                     {item.label}
                   </Link>
@@ -89,15 +89,15 @@ export function Footer() {
           {/* Social & Legal */}
           <div className="md:col-span-2 flex flex-col justify-between">
             <div>
-              <span className="text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-6 block">
+              <span className="text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] text-[#8A8A86] uppercase mb-4 sm:mb-6 block">
                 Connect
               </span>
-              <ul className="flex flex-col gap-3.5">
+              <ul className="flex flex-col gap-2.5 sm:gap-3.5">
                 <li>
                   <a
                     href="#"
                     aria-label="Instagram (opens in new tab)"
-                    className="text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block"
+                    className="text-xs sm:text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block py-1"
                   >
                     Instagram ↗
                   </a>
@@ -106,7 +106,7 @@ export function Footer() {
                   <a
                     href="#"
                     aria-label="Pinterest (opens in new tab)"
-                    className="text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block"
+                    className="text-xs sm:text-sm text-[#F5F4F0] hover:text-[#8A8A86] transition-colors duration-300 tracking-wider font-sans inline-block py-1"
                   >
                     Pinterest ↗
                   </a>
@@ -114,16 +114,16 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="mt-8">
-              <span className="text-[11px] font-sans tracking-[0.22em] text-[#8A8A86] uppercase block mb-3">
+            <div className="mt-6 sm:mt-8">
+              <span className="text-[10px] sm:text-[11px] font-sans tracking-[0.22em] text-[#8A8A86] uppercase block mb-2 sm:mb-3">
                 Legal
               </span>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1.5 sm:gap-2">
                 {FOOTER_LEGAL_LINKS.map((legal) => (
                   <Link
                     key={legal.label}
                     href={legal.href}
-                    className="text-xs text-[#8A8A86] hover:text-[#F5F4F0] transition-colors duration-300 tracking-wider"
+                    className="text-[11px] sm:text-xs text-[#8A8A86] hover:text-[#F5F4F0] transition-colors duration-300 tracking-wider py-0.5"
                   >
                     {legal.label}
                   </Link>
@@ -134,16 +134,16 @@ export function Footer() {
         </div>
 
         {/* Bottom Giant Monumental Wordmark */}
-        <div className="pt-12 sm:pt-16 select-none overflow-hidden">
-          <h2 className="font-serif text-[18vw] leading-[0.8] tracking-[0.06em] text-white/10 hover:text-white/20 transition-colors duration-700 text-center font-normal uppercase">
+        <div className="pt-8 sm:pt-16 select-none overflow-hidden">
+          <h2 className="font-anton text-[22vw] leading-[0.8] tracking-[0.04em] text-white/10 hover:text-white/20 transition-colors duration-700 text-center font-normal uppercase">
             SURFER
           </h2>
         </div>
 
         {/* Copyright Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#8A8A86] border-t border-white/5">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-[#8A8A86] border-t border-white/5 text-center sm:text-left">
           <p>© 2026 SURFER ALL RIGHTS RESERVED.</p>
-          <p className="tracking-widest uppercase text-[10px]">
+          <p className="tracking-widest uppercase text-[9px] sm:text-[10px]">
             HANDCRAFTED BESPOKE PANTS · ZERO COMPROMISE
           </p>
         </div>
