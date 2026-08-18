@@ -62,18 +62,18 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Header with Anton Logo */}
+      {/* Main Refined Header */}
       <header
         className={cn(
           "sticky top-0 left-0 right-0 z-40 transition-all duration-300",
           isScrolled
-            ? "bg-[#ECEAE5]/95 backdrop-blur-md border-b border-[#D8D4CC] py-3.5 shadow-sm"
-            : "bg-[#ECEAE5] border-b border-[#E0DCD4] py-4 sm:py-5"
+            ? "bg-[#ECEAE5]/95 backdrop-blur-md border-b border-[#D8D4CC] py-3 shadow-xs"
+            : "bg-[#ECEAE5] border-b border-[#DCD8CF] py-4"
         )}
       >
         <div className="max-w-[1520px] mx-auto px-6 sm:px-10 md:px-14 flex items-center justify-between">
           {/* Left: Category Navigation */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-8" aria-label="Main Navigation">
             {NAV_CATEGORIES.map((item) => (
               <a
                 key={item.label}
@@ -95,20 +95,20 @@ export function Navbar() {
             className="lg:hidden p-2 text-[#0A0A0A] focus-visible:outline-none cursor-pointer"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          {/* Center: Monumental Brand Logo in Anton Font */}
+          {/* Center: Refined Brand Logo in Anton Font */}
           <Link
             href="/"
-            className="absolute left-1/2 -translate-x-1/2 focus-visible:outline-none group"
+            className="absolute left-1/2 -translate-x-1/2 focus-visible:outline-none group flex items-center justify-center"
             aria-label="SURFER - Return to top"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <span className="font-anton text-4xl sm:text-5xl md:text-6xl tracking-[0.06em] text-[#0A0A0A] uppercase transition-opacity group-hover:opacity-80 leading-none block">
+            <span className="font-anton text-2xl sm:text-3xl md:text-[34px] tracking-[0.05em] text-[#0A0A0A] uppercase transition-opacity group-hover:opacity-80 leading-none">
               SURFER
             </span>
           </Link>
@@ -120,7 +120,7 @@ export function Navbar() {
               className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer"
               title="Search collection"
             >
-              <Search size={16} strokeWidth={2} />
+              <Search size={15} strokeWidth={2} />
               <span className="hidden xl:inline-block uppercase">SEARCH</span>
             </button>
 
@@ -129,7 +129,7 @@ export function Navbar() {
               className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
               title="Client Account"
             >
-              <User size={16} strokeWidth={2} />
+              <User size={15} strokeWidth={2} />
               <span className="hidden xl:inline-block uppercase">LOGIN</span>
             </Link>
 
@@ -138,7 +138,7 @@ export function Navbar() {
               className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
               title="Wishlist"
             >
-              <Heart size={16} strokeWidth={2} />
+              <Heart size={15} strokeWidth={2} />
               <span className="hidden xl:inline-block uppercase">WISHLIST</span>
             </Link>
 
@@ -148,9 +148,9 @@ export function Navbar() {
               title="Shopping Bag"
             >
               <div className="relative">
-                <ShoppingBag size={16} strokeWidth={2} />
+                <ShoppingBag size={15} strokeWidth={2} />
               </div>
-              <span className="uppercase font-semibold">
+              <span className="uppercase font-semibold text-[11px]">
                 CART ({bagCount})
               </span>
             </Link>
@@ -185,10 +185,10 @@ export function Navbar() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="flex items-center justify-between text-3xl font-anton text-[#0A0A0A] tracking-wider py-3 border-b border-[#D8D4CC]"
+                    className="flex items-center justify-between text-2xl font-anton text-[#0A0A0A] tracking-wider py-3 border-b border-[#D8D4CC]"
                   >
                     <span>{link.label}</span>
-                    <ArrowRight size={20} className="text-[#9E7B5C]" />
+                    <ArrowRight size={18} className="text-[#9E7B5C]" />
                   </a>
                 </motion.div>
               ))}
