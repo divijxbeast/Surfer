@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, User, Heart, ShoppingBag, Menu, X, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/components/common/SmoothScrollProvider";
+import { AuthModal } from "@/components/account/AuthModal";
 
 const NAV_CATEGORIES = [
   { label: "MEN", href: "#collection" },
@@ -17,7 +18,7 @@ const NAV_CATEGORIES = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [wishlistCount] = useState(0);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [bagCount] = useState(0);
   const { scrollTo } = useSmoothScroll();
 
@@ -42,7 +43,7 @@ export function Navbar() {
   return (
     <>
       {/* Top Black Announcement Strip */}
-      <div className="bg-[#0A0A0A] text-[#F7F5F0] text-[10px] sm:text-[11px] font-mono tracking-widest py-2 px-6 sm:px-12 flex items-center justify-between select-none z-50 relative border-b border-white/5">
+      <div className="bg-[#0A0A0A] text-[#F7F5F0] text-[10px] sm:text-[11px] font-mono tracking-widest py-2 px-4 sm:px-12 flex items-center justify-between select-none z-50 relative border-b border-white/5">
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse hidden sm:inline-block" />
           <span className="uppercase font-medium">FREE DELIVERY ON ORDERS ABOVE $150 · BESPOKE ATELIER</span>
@@ -56,9 +57,12 @@ export function Navbar() {
             TRACK ORDER
           </Link>
           <span>|</span>
-          <a href="#contact" className="hover:text-white transition-colors uppercase">
-            HELP
-          </a>
+          <button
+            onClick={() => setIsAuthModalOpen(true)}
+            className="hover:text-white transition-colors uppercase cursor-pointer"
+          >
+            CLIENT PORTAL
+          </button>
         </div>
       </div>
 
@@ -71,7 +75,7 @@ export function Navbar() {
             : "bg-[#ECEAE5] border-b border-[#DCD8CF] py-4"
         )}
       >
-        <div className="max-w-[1520px] mx-auto px-6 sm:px-10 md:px-14 flex items-center justify-between">
+        <div className="max-w-[1520px] mx-auto px-4 sm:px-10 md:px-14 flex items-center justify-between">
           {/* Left: Category Navigation */}
           <nav className="hidden lg:flex items-center gap-7 xl:gap-8" aria-label="Main Navigation">
             {NAV_CATEGORIES.map((item) => (
@@ -114,24 +118,26 @@ export function Navbar() {
           </Link>
 
           {/* Right: Search, Account, Wishlist, Cart */}
-          <div className="flex items-center gap-4 sm:gap-6 text-[#1A1A1A]">
+          <div className="flex items-center gap-3 sm:gap-6 text-[#1A1A1A]">
             <button
               onClick={() => handleNavClick("#collection")}
               className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer"
               title="Search collection"
             >
               <Search size={15} strokeWidth={2} />
-              <span className="hidden xl:inline-block uppercase">SEARCH</span>
+              <span className="hidden sm:inline-block uppercase">SEARCH</span>
             </button>
 
-            <Link
-              href="/account"
-              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
+            {/* Clickable Login Button with Instant Modal Trigger */}
+            <button
+              type="button"
+              onClick={() => setIsAuthModalOpen(true)}
+              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer px-1 py-1"
               title="Client Account"
             >
               <User size={15} strokeWidth={2} />
-              <span className="hidden xl:inline-block uppercase">LOGIN</span>
-            </Link>
+              <span className="inline-block uppercase">LOGIN</span>
+            </button>
 
             <Link
               href="/account"
@@ -139,7 +145,7 @@ export function Navbar() {
               title="Wishlist"
             >
               <Heart size={15} strokeWidth={2} />
-              <span className="hidden xl:inline-block uppercase">WISHLIST</span>
+              <span className="hidden md:inline-block uppercase">WISHLIST</span>
             </Link>
 
             <Link
@@ -158,6 +164,12 @@ export function Navbar() {
         </div>
       </header>
 
+      {/* Instant Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -166,9 +178,9 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#ECEAE5] pt-28 px-8 pb-12 flex flex-col justify-between lg:hidden"
+            className="fixed inset-0 z-50 bg-[#ECEAE5] pt-28 px-8 pb-12 flex flex-col justify-between lg:hidden overflow-y-auto"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               <span className="text-[10px] font-mono tracking-[0.3em] text-[#9E7B5C] uppercase font-semibold">
                 DIRECTORY
               </span>
@@ -177,7 +189,7 @@ export function Navbar() {
                   key={link.label}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.06 + 0.05, duration: 0.35 }}
+                  transition={{ delay: idx * 0.05 + 0.05, duration: 0.35 }}
                 >
                   <a
                     href={link.href}
@@ -185,19 +197,38 @@ export function Navbar() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="flex items-center justify-between text-2xl font-anton text-[#0A0A0A] tracking-wider py-3 border-b border-[#D8D4CC]"
+                    className="flex items-center justify-between text-2xl font-anton text-[#0A0A0A] tracking-wider py-2.5 border-b border-[#D8D4CC]"
                   >
                     <span>{link.label}</span>
                     <ArrowRight size={18} className="text-[#9E7B5C]" />
                   </a>
                 </motion.div>
               ))}
+
+              {/* Dedicated Login in Mobile Drawer */}
+              <motion.div
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.25, duration: 0.35 }}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsAuthModalOpen(true);
+                  }}
+                  className="flex items-center justify-between w-full text-2xl font-anton text-[#0A0A0A] tracking-wider py-2.5 border-b border-[#D8D4CC] text-left cursor-pointer"
+                >
+                  <span>CLIENT LOGIN / VAULT</span>
+                  <ArrowRight size={18} className="text-[#9E7B5C]" />
+                </button>
+              </motion.div>
             </div>
 
             <div className="flex flex-col gap-4 mt-8">
               <button
                 onClick={() => handleNavClick("#collection")}
-                className="w-full py-4 text-xs font-mono font-semibold tracking-[0.24em] text-[#F7F5F0] bg-[#0A0A0A] uppercase shadow-lg"
+                className="w-full py-4 text-xs font-mono font-semibold tracking-[0.24em] text-[#F7F5F0] bg-[#0A0A0A] uppercase shadow-lg cursor-pointer"
               >
                 EXPLORE COLLECTION
               </button>
