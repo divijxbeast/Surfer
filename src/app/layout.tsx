@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter } from "next/font/google";
+import { Instrument_Serif, Inter, Anton } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/common/SmoothScrollProvider";
 import { CustomCursor } from "@/components/common/CustomCursor";
@@ -17,8 +17,15 @@ const instrumentSerif = Instrument_Serif({
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -89,14 +96,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
+    <html lang="en" className={`${instrumentSerif.variable} ${inter.variable} ${anton.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-[#F5F4F0] text-[#0A0A0A] selection:bg-[#0A0A0A] selection:text-[#F5F4F0]">
+      <body className="font-sans antialiased bg-[#ECEAE5] text-[#0A0A0A] selection:bg-[#0A0A0A] selection:text-[#F5F4F0]">
         <SkipToContent />
         <LoadingScreen />
         <CustomCursor />

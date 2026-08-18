@@ -8,11 +8,10 @@ import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/components/common/SmoothScrollProvider";
 
 const NAV_CATEGORIES = [
-  { label: "TROUSERS", href: "#collection" },
-  { label: "CHINOS", href: "#collection" },
-  { label: "CARGOS", href: "#collection" },
+  { label: "MEN", href: "#collection" },
+  { label: "WOMEN", href: "#collection" },
   { label: "SILHOUETTES", href: "#fit" },
-  { label: "THE ATELIER", href: "#about" },
+  { label: "ATELIER", href: "#about" },
 ];
 
 export function Navbar() {
@@ -46,11 +45,11 @@ export function Navbar() {
       <div className="bg-[#0A0A0A] text-[#F7F5F0] text-[10px] sm:text-[11px] font-mono tracking-widest py-2 px-6 sm:px-12 flex items-center justify-between select-none z-50 relative border-b border-white/5">
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse hidden sm:inline-block" />
-          <span className="uppercase">COMPLIMENTARY WORLDWIDE BESPOKE ATELIER DELIVERY</span>
+          <span className="uppercase font-medium">FREE DELIVERY ON ORDERS ABOVE $150 · BESPOKE ATELIER</span>
         </div>
         <div className="hidden md:flex items-center gap-6 text-[#A0A0A0]">
           <Link href="/measurements" className="hover:text-white transition-colors uppercase">
-            DIGITAL TAILOR
+            DOWNLOAD APP
           </Link>
           <span>|</span>
           <Link href="/orders" className="hover:text-white transition-colors uppercase">
@@ -58,17 +57,17 @@ export function Navbar() {
           </Link>
           <span>|</span>
           <a href="#contact" className="hover:text-white transition-colors uppercase">
-            CONCIERGE
+            HELP
           </a>
         </div>
       </div>
 
-      {/* Main Luxury Header */}
+      {/* Main Header with Anton Logo */}
       <header
         className={cn(
           "sticky top-0 left-0 right-0 z-40 transition-all duration-300",
           isScrolled
-            ? "bg-[#EAE8E3]/95 backdrop-blur-md border-b border-[#D8D4CC] py-3.5 shadow-sm"
+            ? "bg-[#ECEAE5]/95 backdrop-blur-md border-b border-[#D8D4CC] py-3.5 shadow-sm"
             : "bg-[#ECEAE5] border-b border-[#E0DCD4] py-4 sm:py-5"
         )}
       >
@@ -83,7 +82,7 @@ export function Navbar() {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="text-[11px] font-sans font-semibold tracking-[0.22em] text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors py-1 uppercase"
+                className="text-[11px] font-sans font-semibold tracking-[0.2em] text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors py-1 uppercase"
               >
                 {item.label}
               </a>
@@ -99,7 +98,7 @@ export function Navbar() {
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-          {/* Center: Monumental Brand Logo */}
+          {/* Center: Monumental Brand Logo in Anton Font */}
           <Link
             href="/"
             className="absolute left-1/2 -translate-x-1/2 focus-visible:outline-none group"
@@ -109,56 +108,49 @@ export function Navbar() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            <span className="font-sans text-3xl sm:text-4xl md:text-5xl font-black tracking-[0.25em] text-[#0A0A0A] uppercase pl-[0.25em] transition-opacity group-hover:opacity-80 leading-none">
+            <span className="font-anton text-4xl sm:text-5xl md:text-6xl tracking-[0.06em] text-[#0A0A0A] uppercase transition-opacity group-hover:opacity-80 leading-none block">
               SURFER
             </span>
           </Link>
 
           {/* Right: Search, Account, Wishlist, Cart */}
-          <div className="flex items-center gap-4 sm:gap-7 text-[#1A1A1A]">
+          <div className="flex items-center gap-4 sm:gap-6 text-[#1A1A1A]">
             <button
               onClick={() => handleNavClick("#collection")}
-              className="hidden sm:flex items-center gap-2 text-[11px] font-mono tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors cursor-pointer"
               title="Search collection"
             >
-              <Search size={16} strokeWidth={1.75} />
+              <Search size={16} strokeWidth={2} />
               <span className="hidden xl:inline-block uppercase">SEARCH</span>
             </button>
 
             <Link
               href="/account"
-              className="hidden sm:flex items-center gap-2 text-[11px] font-mono tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
+              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
               title="Client Account"
             >
-              <User size={16} strokeWidth={1.75} />
+              <User size={16} strokeWidth={2} />
               <span className="hidden xl:inline-block uppercase">LOGIN</span>
             </Link>
 
             <Link
               href="/account"
-              className="relative p-1 text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
+              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors"
               title="Wishlist"
             >
-              <Heart size={18} strokeWidth={1.75} />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-[#0A0A0A] text-white text-[8px] font-mono flex items-center justify-center">
-                  {wishlistCount}
-                </span>
-              )}
+              <Heart size={16} strokeWidth={2} />
+              <span className="hidden xl:inline-block uppercase">WISHLIST</span>
             </Link>
 
             <Link
               href="/cart"
-              className="flex items-center gap-2 text-[11px] font-mono tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors p-1"
+              className="flex items-center gap-1.5 text-[11px] font-sans font-semibold tracking-wider text-[#1A1A1A] hover:text-[#9E7B5C] transition-colors p-1"
               title="Shopping Bag"
             >
               <div className="relative">
-                <ShoppingBag size={18} strokeWidth={1.75} />
-                <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-[#0A0A0A] text-white text-[8px] font-mono flex items-center justify-center">
-                  {bagCount}
-                </span>
+                <ShoppingBag size={16} strokeWidth={2} />
               </div>
-              <span className="hidden sm:inline-block uppercase font-semibold">
+              <span className="uppercase font-semibold">
                 CART ({bagCount})
               </span>
             </Link>
@@ -166,7 +158,7 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Fullscreen Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -178,7 +170,7 @@ export function Navbar() {
           >
             <div className="flex flex-col gap-6">
               <span className="text-[10px] font-mono tracking-[0.3em] text-[#9E7B5C] uppercase font-semibold">
-                ATELIER DIRECTORY
+                DIRECTORY
               </span>
               {NAV_CATEGORIES.map((link, idx) => (
                 <motion.div
@@ -193,7 +185,7 @@ export function Navbar() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className="flex items-center justify-between text-3xl font-sans font-bold text-[#0A0A0A] tracking-tight py-3 border-b border-[#D8D4CC]"
+                    className="flex items-center justify-between text-3xl font-anton text-[#0A0A0A] tracking-wider py-3 border-b border-[#D8D4CC]"
                   >
                     <span>{link.label}</span>
                     <ArrowRight size={20} className="text-[#9E7B5C]" />
@@ -207,10 +199,10 @@ export function Navbar() {
                 onClick={() => handleNavClick("#collection")}
                 className="w-full py-4 text-xs font-mono font-semibold tracking-[0.24em] text-[#F7F5F0] bg-[#0A0A0A] uppercase shadow-lg"
               >
-                EXPLORE ARCHIVE
+                EXPLORE COLLECTION
               </button>
               <p className="text-[11px] font-mono text-[#85837D] tracking-widest text-center mt-2">
-                SURFER ATELIER · BESPOKE PANTS MADE FOR YOU
+                SURFER ATELIER · PANTS MADE FOR YOU
               </p>
             </div>
           </motion.div>

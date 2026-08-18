@@ -15,6 +15,7 @@
 
   --font-serif: var(--font-instrument-serif), Georgia, serif;
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-anton: var(--font-anton), Anton, sans-serif;
 
   --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -32,10 +33,10 @@
   --color-accent-sand: #C9BFA8;
   --color-accent-olive: #687063;
 
-  --bg-primary: #F7F5F0;
+  --bg-primary: #ECEAE5;
   --text-primary: #0A0A0A;
   --text-muted: #85837D;
-  --border-primary: #E2DDD5;
+  --border-primary: #D8D4CC;
 }
 
 /* Global Reset & Base Setup */
@@ -44,7 +45,7 @@
 }
 
 html {
-  background-color: var(--color-white-warm);
+  background-color: #ECEAE5;
   color: var(--color-black-deep);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -55,8 +56,12 @@ html {
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background-color: var(--color-white-warm);
+  background-color: #ECEAE5;
   color: var(--color-black-deep);
+}
+
+.font-anton {
+  font-family: var(--font-anton);
 }
 
 /* High-Fashion Editorial Typography */
