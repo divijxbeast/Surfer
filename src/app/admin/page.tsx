@@ -67,8 +67,8 @@ const SILHOUETTE_OPTIONS = [
   { label: "Wide Architectural", value: "wide" },
 ];
 
-// SHA-256 hash of master passcode "surfer2026"
-const VALID_PASSCODES = ["surfer2026", "divij2026", "surfer-admin-2026"];
+// Master access passkey
+const VALID_PASSCODES = ["RSD2026", "rsd2026"];
 const AUTH_STORAGE_KEY = "surfer_atelier_admin_token";
 
 export default function AdminPage() {
