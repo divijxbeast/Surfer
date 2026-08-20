@@ -14,7 +14,6 @@ const NAV_CATEGORIES = [
   { label: "SILHOUETTES", href: "/#fit" },
   { label: "ATELIER", href: "/#atelier" },
   { label: "ABOUT US", href: "/#about-us" },
-  { label: "ADMIN", href: "/admin" },
 ];
 
 export function Navbar() {

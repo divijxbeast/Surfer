@@ -46,12 +46,6 @@ export default function ProductDetailPage() {
             >
               RETURN TO ARCHIVE
             </Link>
-            <Link
-              href="/admin"
-              className="py-2.5 px-6 border border-[#0A0A0A] text-[#0A0A0A] text-xs font-mono font-bold uppercase tracking-widest hover:bg-[#0A0A0A] hover:text-[#F7F5F0]"
-            >
-              ADMIN INVENTORY
-            </Link>
           </div>
         </div>
       </main>
@@ -72,14 +66,6 @@ export default function ProductDetailPage() {
           >
             <ArrowLeft size={14} />
             <span>RETURN TO ARCHIVE</span>
-          </Link>
-
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[#85837D] hover:text-[#0A0A0A] uppercase transition-colors"
-          >
-            <Edit3 size={13} />
-            <span>EDIT IN ADMIN</span>
           </Link>
         </div>
 

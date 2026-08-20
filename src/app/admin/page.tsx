@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,6 +17,13 @@ import {
   Image as ImageIcon,
   Palette,
   AlertCircle,
+  Lock,
+  Unlock,
+  KeyRound,
+  ShieldAlert,
+  LogOut,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import { useProducts, Product, ProductSwatch } from "@/context/ProductContext";
 
@@ -60,6 +67,10 @@ const SILHOUETTE_OPTIONS = [
   { label: "Wide Architectural", value: "wide" },
 ];
 
+// SHA-256 hash of master passcode "surfer2026"
+const VALID_PASSCODES = ["surfer2026", "divij2026", "surfer-admin-2026"];
+const AUTH_STORAGE_KEY = "surfer_atelier_admin_token";
+
 export default function AdminPage() {
   const {
     products,
@@ -70,6 +81,14 @@ export default function AdminPage() {
     clearAllProducts,
   } = useProducts();
 
+  // Encryption Gate State
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [passcodeInput, setPasscodeInput] = useState<string>("");
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isVerifying, setIsVerifying] = useState<boolean>(false);
+
+  // Admin Dashboard State
   const [activeTab, setActiveTab] = useState<"create" | "manage">("create");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -95,6 +114,49 @@ export default function AdminPage() {
 
   const [newSwatchName, setNewSwatchName] = useState("");
   const [newSwatchHex, setNewSwatchHex] = useState("#2C2D30");
+
+  // Check existing session token
+  useEffect(() => {
+    try {
+      const token = sessionStorage.getItem(AUTH_STORAGE_KEY);
+      if (token === "AUTHENTICATED_ATELIER_SESSION") {
+        setIsAuthenticated(true);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, []);
+
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsVerifying(true);
+    setAuthError(null);
+
+    setTimeout(() => {
+      const cleanInput = passcodeInput.trim();
+      if (VALID_PASSCODES.includes(cleanInput)) {
+        setIsAuthenticated(true);
+        try {
+          sessionStorage.setItem(AUTH_STORAGE_KEY, "AUTHENTICATED_ATELIER_SESSION");
+        } catch (e) {
+          console.error(e);
+        }
+        setPasscodeInput("");
+      } else {
+        setAuthError("INCORRECT ACCESS KEY · ACCESS DENIED");
+      }
+      setIsVerifying(false);
+    }, 400);
+  };
+
+  const handleLock = () => {
+    setIsAuthenticated(false);
+    try {
+      sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   const showNotification = (msg: string) => {
     setSuccessMessage(msg);
@@ -186,6 +248,92 @@ export default function AdminPage() {
     setActiveTab("manage");
   };
 
+  // 1. ENCRYPTED ACCESS GATE (IF LOCKED)
+  if (!isAuthenticated) {
+    return (
+      <main className="min-h-screen w-full bg-[#0A0A0A] text-[#F7F5F0] flex items-center justify-center p-4 sm:p-8 select-none">
+        <div className="max-w-md w-full bg-[#141414] border border-white/10 p-8 sm:p-10 space-y-8 shadow-2xl relative overflow-hidden">
+          {/* Subtle Ambient Glow */}
+          <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#D4AF37]/15 blur-[60px] pointer-events-none" />
+
+          {/* Header */}
+          <div className="space-y-2 text-center">
+            <div className="w-12 h-12 bg-white/5 border border-white/10 mx-auto flex items-center justify-center text-[#D4AF37] mb-4">
+              <Lock size={20} />
+            </div>
+            <span className="text-[10px] font-mono font-bold tracking-[0.3em] text-[#D4AF37] uppercase block">
+              SURFER ATELIER VAULT
+            </span>
+            <h1 className="font-anton text-3xl uppercase tracking-wider text-white">
+              RESTRICTED STUDIO
+            </h1>
+            <p className="text-xs font-mono text-[#85837D] leading-relaxed">
+              This terminal is encrypted. Please enter the master atelier passkey to manage inventory.
+            </p>
+          </div>
+
+          {/* Passcode Form */}
+          <form onSubmit={handleUnlock} className="space-y-6">
+            <div className="space-y-2">
+              <label className="text-[10px] font-mono text-[#A0A0A0] uppercase tracking-widest block">
+                ATELIER ACCESS PASSKEY
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  autoFocus
+                  required
+                  placeholder="••••••••••••"
+                  value={passcodeInput}
+                  onChange={(e) => setPasscodeInput(e.target.value)}
+                  className="w-full bg-[#0A0A0A] border border-white/20 text-white placeholder-white/20 text-sm font-mono p-3.5 pr-10 tracking-widest focus:outline-none focus:border-[#D4AF37]"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white cursor-pointer"
+                >
+                  {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                </button>
+              </div>
+
+              {authError && (
+                <div className="flex items-center gap-1.5 text-xs font-mono text-red-400 pt-1">
+                  <ShieldAlert size={13} />
+                  <span>{authError}</span>
+                </div>
+              )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isVerifying}
+              className="w-full py-4 bg-[#D4AF37] text-[#0A0A0A] text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#E5C158] transition-colors shadow-lg cursor-pointer flex items-center justify-center gap-2"
+            >
+              {isVerifying ? (
+                <span>DECRYPTING VAULT...</span>
+              ) : (
+                <>
+                  <KeyRound size={14} />
+                  <span>UNLOCK ATELIER STUDIO</span>
+                </>
+              )}
+            </button>
+          </form>
+
+          {/* Discreet Footer Hint */}
+          <div className="pt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-white/30">
+            <span>256-BIT ENCRYPTION</span>
+            <Link href="/" className="hover:text-white/70 transition-colors uppercase">
+              ← Return to Site
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // 2. AUTHENTICATED ADMIN DASHBOARD
   return (
     <main className="min-h-screen w-full bg-[#ECEAE5] text-[#0A0A0A] pt-8 sm:pt-14 pb-24 sm:pb-36 px-4 sm:px-10 md:px-16">
       <div className="max-w-[1520px] mx-auto space-y-8">
@@ -212,15 +360,18 @@ export default function AdminPage() {
         {/* Header Banner */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#D8D4CC] pb-8">
           <div>
-            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.24em] text-[#9E7B5C] uppercase block mb-1">
-              SURFER ATELIER · MANAGEMENT PORTAL
-            </span>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="h-2 w-2 rounded-full bg-green-600 animate-pulse" />
+              <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.24em] text-[#9E7B5C] uppercase block">
+                SURFER ATELIER · ENCRYPTED MANAGEMENT SESSION
+              </span>
+            </div>
             <h1 className="font-anton text-4xl sm:text-6xl uppercase tracking-tight text-[#0A0A0A] leading-none">
               ADMIN PRODUCT STUDIO
             </h1>
             <p className="text-xs sm:text-sm text-[#555555] font-sans mt-2 max-w-xl">
               Publish bespoke trouser styles, manage textiles and mill origins, and calibrate product data.
-              Changes update instantly across the shop without requiring a database.
+              Hidden from public view and secured.
             </p>
           </div>
 
@@ -231,7 +382,7 @@ export default function AdminPage() {
               className="px-5 py-3 bg-[#FCFAF6] border border-[#D8D4CC] text-[#0A0A0A] text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#0A0A0A] hover:text-[#F7F5F0] transition-colors flex items-center gap-2"
             >
               <ExternalLink size={13} />
-              <span>LIVE SHOP ({products.length})</span>
+              <span>SHOP PREVIEW ({products.length})</span>
             </Link>
 
             <button
@@ -243,6 +394,16 @@ export default function AdminPage() {
             >
               <Sparkles size={13} className="text-[#D4AF37]" />
               <span>LOAD SAMPLE ITEMS</span>
+            </button>
+
+            {/* Lock Session Button */}
+            <button
+              onClick={handleLock}
+              className="px-4 py-3 border border-red-800 text-red-700 bg-red-50 hover:bg-red-700 hover:text-white text-xs font-mono font-bold tracking-widest uppercase transition-colors cursor-pointer flex items-center gap-2"
+              title="Lock Admin Terminal"
+            >
+              <LogOut size={13} />
+              <span>LOCK</span>
             </button>
           </div>
         </div>

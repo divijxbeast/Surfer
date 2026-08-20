@@ -79,15 +79,6 @@ export default function ProductsPage() {
                 COLLECTION ARCHIVE
               </h1>
             </div>
-            <div className="flex items-center gap-3">
-              <Link
-                href="/admin"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-[#0A0A0A] text-[#F7F5F0] text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#222222] transition-colors shadow-sm"
-              >
-                <PlusCircle size={14} className="text-[#D4AF37]" />
-                <span>ADMIN PORTAL</span>
-              </Link>
-            </div>
           </div>
           <p className="text-xs sm:text-sm text-[#555555] font-sans max-w-2xl leading-relaxed">
             Every trouser in the SURFER archive is constructed individually to client biometric parameters.
@@ -176,31 +167,22 @@ export default function ProductsPage() {
                 ATELIER ARCHIVE STATUS
               </span>
               <h2 className="font-anton text-2xl sm:text-4xl text-[#0A0A0A] uppercase tracking-tight">
-                {products.length === 0 ? "NO GARMENTS IN ROTATION YET" : "NO MATCHING PIECES FOUND"}
+                {products.length === 0 ? "SEASONAL ARCHIVE CALIBRATION" : "NO MATCHING PIECES FOUND"}
               </h2>
               <p className="text-xs sm:text-sm text-[#555555] font-sans max-w-md mx-auto leading-relaxed">
                 {products.length === 0
-                  ? "The digital archive is currently awaiting new garment additions. Use the Admin Portal to publish pieces or load sample items to preview."
+                  ? "The digital archive is currently preparing newly released single-piece cuts. Explore our silhouettes or register for private commission drops."
                   : "No garments match your current search and filter settings. Try adjusting your filter or search query."}
               </p>
             </div>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
-                href="/admin"
+                href="/#fit"
                 className="w-full sm:w-auto px-6 py-3.5 bg-[#0A0A0A] text-[#F7F5F0] text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#222222] transition-colors"
               >
-                OPEN ADMIN PORTAL
+                EXPLORE SILHOUETTES
               </Link>
-              {products.length === 0 && (
-                <button
-                  onClick={seedSampleProducts}
-                  className="w-full sm:w-auto px-6 py-3.5 bg-[#ECEAE5] border border-[#0A0A0A] text-[#0A0A0A] text-xs font-mono font-bold tracking-widest uppercase hover:bg-[#0A0A0A] hover:text-[#F7F5F0] transition-colors cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <Sparkles size={14} className="text-[#9E7B5C]" />
-                  <span>LOAD SAMPLE ITEMS (DEMO)</span>
-                </button>
-              )}
             </div>
           </div>
         ) : (
