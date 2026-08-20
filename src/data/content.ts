@@ -72,6 +72,7 @@ export const FOOTER_LEGAL_LINKS: NavItem[] = [
 
 export const FOOTER_FUTURE_LINKS: NavItem[] = [
   { label: "Trouser Archive", href: "/products" },
+  { label: "Admin Product Studio", href: "/admin" },
   { label: "3D Fit Simulator", href: "/fit" },
   { label: "Digital Tailor Measurement", href: "/measurements" },
   { label: "Client Vault", href: "/account" },

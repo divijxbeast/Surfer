@@ -7,6 +7,7 @@ import { LoadingScreen } from "@/components/common/LoadingScreen";
 import { SkipToContent } from "@/components/common/SkipToContent";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ProductProvider } from "@/context/ProductContext";
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
@@ -108,9 +109,11 @@ export default function RootLayout({
         <LoadingScreen />
         <CustomCursor />
         <SmoothScrollProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <ProductProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </ProductProvider>
         </SmoothScrollProvider>
       </body>
     </html>

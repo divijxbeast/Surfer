@@ -7,14 +7,18 @@ import { Search, User, Heart, ShoppingBag, Menu, X, ArrowRight } from "lucide-re
 import { cn } from "@/lib/utils";
 import { useSmoothScroll } from "@/components/common/SmoothScrollProvider";
 
+import { useRouter } from "next/navigation";
+
 const NAV_CATEGORIES = [
-  { label: "MEN", href: "#collection" },
-  { label: "SILHOUETTES", href: "#fit" },
-  { label: "ATELIER", href: "#atelier" },
-  { label: "ABOUT US", href: "#about-us" },
+  { label: "SHOP", href: "/products" },
+  { label: "SILHOUETTES", href: "/#fit" },
+  { label: "ATELIER", href: "/#atelier" },
+  { label: "ABOUT US", href: "/#about-us" },
+  { label: "ADMIN", href: "/admin" },
 ];
 
 export function Navbar() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [bagCount] = useState(0);
@@ -30,12 +34,15 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href);
+    if (href.startsWith("#") || href.startsWith("/#")) {
+      const targetSelector = href.startsWith("/#") ? href.replace("/", "") : href;
+      const element = document.querySelector(targetSelector);
       if (element) {
         scrollTo(element as HTMLElement, { offset: -40 });
+        return;
       }
     }
+    router.push(href);
   };
 
   return (
