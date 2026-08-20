@@ -40,27 +40,6 @@ export function Navbar() {
 
   return (
     <>
-      {/* Top Black Announcement Strip */}
-      <div className="bg-[#0A0A0A] text-[#F7F5F0] text-[10px] sm:text-[11px] font-mono tracking-widest py-2 px-4 sm:px-12 flex items-center justify-between select-none z-50 relative border-b border-white/5">
-        <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] animate-pulse hidden sm:inline-block" />
-          <span className="uppercase font-medium">FREE DELIVERY ON ORDERS ABOVE $150 · BESPOKE ATELIER</span>
-        </div>
-        <div className="hidden md:flex items-center gap-6 text-[#A0A0A0]">
-          <Link href="/measurements" className="hover:text-white transition-colors uppercase">
-            DOWNLOAD APP
-          </Link>
-          <span>|</span>
-          <Link href="/orders" className="hover:text-white transition-colors uppercase">
-            TRACK ORDER
-          </Link>
-          <span>|</span>
-          <Link href="/login" className="hover:text-white transition-colors uppercase">
-            CLIENT PORTAL
-          </Link>
-        </div>
-      </div>
-
       {/* Main Header */}
       <header
         className={cn(
